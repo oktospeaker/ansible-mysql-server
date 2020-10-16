@@ -8,12 +8,12 @@ Restart=always
 ExecStartPre=-/usr/bin/docker rm {{ service_name }}
 ExecStart=/usr/bin/docker run \
         --rm \
+        --name {{ service_name }} \
         -t \
         -e MYSQL_DATABASE="{{ MYSQL_DATABASE }}" \
         -e MYSQL_USER="{{ MYSQL_USER }}" \
         -e MYSQL_PASSWORD="{{ MYSQL_PASSWORD }}" \
         -e MYSQL_ROOT_PASSWORD="{{ MYSQL_ROOT_PASSWORD }}" \
-        --name {{ service_name }} \
         --detach \
         -v {{ host_dir }}:{{ container_dir }} \
         {{ docker_image }} \
