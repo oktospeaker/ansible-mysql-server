@@ -1,0 +1,8 @@
+#Init mysql-server service
+---
+- name: "{{ service_name }} service config on host"
+  template:
+    src: systemd/mysql.service.j2
+    dest: "/etc/systemd/system/{{ service_name }}.service"
+    backup: yes
+  notify: "{{ service_name }} restart"

@@ -1,0 +1,26 @@
+[Unit]
+Description=MySQL-server docker container
+Requires=docker.service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStartPre=-/usr/bin/docker rm {{ service_name }}
+ExecStart=/usr/bin/docker run \
+        --rm \
+        -t \
+        -e MYSQL_DATABASE="{{ MYSQL_DATABASE }}" \
+        -e MYSQL_USER="{{ MYSQL_USER }}" \
+        -e MYSQL_PASSWORD="{{ MYSQL_PASSWORD }}" \
+        -e MYSQL_ROOT_PASSWORD="{{ MYSQL_ROOT_PASSWORD }}" \
+        --name {{ service_name }} \
+        --detach \
+        -v {{ host_dir }}:{{ container_dir }} \
+        {{ docker_image }} \
+        --character-set-server=utf8 \
+        --collation-server=utf8_bin \
+        --default-authentication-plugin=mysql_native_password
+ExecStop=/usr/bin/docker stop -t 1 {{ service_name }}
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,7 @@
+---
+galaxy_info:
+  author: oktospeaker@gmail.com
+  description: "Install/Uninstall MySQL-server docker container"
+  company: none
+
+dependencies: []
