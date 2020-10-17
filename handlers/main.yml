@@ -10,6 +10,7 @@
     name: "{{ service_name }}"
     state: restarted
     enabled: yes
+  notify: handler_exit
 
 - name: "{{ service_name }} restart uninstall"
   become: true
@@ -19,3 +20,8 @@
 - name: reset-failed
   become: true
   shell: systemctl reset-failed
+  notify: handler_exit
+
+- name: handler_exit
+  debug:
+    msg: DONE
