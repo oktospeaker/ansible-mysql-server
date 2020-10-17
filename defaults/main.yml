@@ -1,0 +1,6 @@
+---
+service_name: mysql-docker
+uninstall_service: false
+host_dir: /var/docker/mysql
+container_dir: /var/lib/mysql
+docker_image: mysql
