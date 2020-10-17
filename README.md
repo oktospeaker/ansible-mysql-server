@@ -1,5 +1,6 @@
 # ansible-mysql-server
-Deploy docker container with MySQL-server based on official mysql container (https://hub.docker.com/)
+Deploy docker container with MySQL-server based on official mysql container (https://hub.docker.com/).
+MySQL databases are stored in the host directory (host_dir variable) in this role .
 
 ## Role variables
 | Variable | Default value | Description |
@@ -12,7 +13,7 @@ docker_image                    |       mysql                   |   Docker image
 
 ### How to use
     - installation: just start the role
-    - uninstallation: add --extra-vars "uninstall_service=true" (WARNING: It doesn't delete directory /var/docker/tftpboot on host!!)
+    - uninstallation: add --extra-vars "uninstall_service=true" (WARNING: It doesn't delete directory /var/docker/mysql on host!!)
 
 #### MYSQL_DATABASE, MYSQL_USER, MYSQL_PASSWORD, MYSQL_ROOT_PASSWORD
 These variables are used in ./templates/systemd/mysql.service.j2 service template. It's better to store these variables in encrypted file (for example in encrypted <your project ansible directory>/group_vars/all.yml . For more information see - https://docs.ansible.com/ansible/latest/cli/ansible-vault.html
