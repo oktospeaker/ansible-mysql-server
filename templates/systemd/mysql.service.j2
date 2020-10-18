@@ -15,7 +15,10 @@ ExecStart=/usr/bin/docker run \
         -e MYSQL_PASSWORD={{ MYSQL_PASSWORD }} \
         -e MYSQL_ROOT_PASSWORD={{ MYSQL_ROOT_PASSWORD }} \
         -v {{ host_dir }}:{{ container_dir }} \
-        {{ docker_image }}
+        {{ docker_image }} \
+        --character-set-server=utf8 \
+	--collation-server=utf8_bin \
+	--default-authentication-plugin=mysql_native_password
 ExecStop=/usr/bin/docker stop -t 1 {{ service_name }}
 
 [Install]
