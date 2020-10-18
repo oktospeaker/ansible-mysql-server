@@ -10,10 +10,10 @@ ExecStart=/usr/bin/docker run \
         --rm \
         --name {{ service_name }} \
         -t \
-        -e MYSQL_DATABASE="{{ MYSQL_DATABASE }}" \
-        -e MYSQL_USER="{{ MYSQL_USER }}" \
-        -e MYSQL_PASSWORD="{{ MYSQL_PASSWORD }}" \
-        -e MYSQL_ROOT_PASSWORD="{{ MYSQL_ROOT_PASSWORD }}" \
+        -e MYSQL_DATABASE={{ MYSQL_DATABASE }} \
+        -e MYSQL_USER={{ MYSQL_USER }} \
+        -e MYSQL_PASSWORD={{ MYSQL_PASSWORD }} \
+        -e MYSQL_ROOT_PASSWORD={{ MYSQL_ROOT_PASSWORD }} \
         -v {{ host_dir }}:{{ container_dir }} \
         {{ docker_image }}
 ExecStop=/usr/bin/docker stop -t 1 {{ service_name }}
